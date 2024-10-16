@@ -9,7 +9,7 @@ import vk_api
 from vk_api.longpoll import VkLongPoll, VkEventType
 
 from db import Database
-from utils import create_advertising
+from utils import create_advertising, get_ai_response
 
 
 class VtbBot:
@@ -37,7 +37,7 @@ class VtbBot:
                 self.database.add_record(data={
                     'vk_id': event.user_id
                 })
-                self.send_message(event.user_id, '*здесь будет ответ от ИИ*')
+                self.send_message(event.user_id, get_ai_response(message=text))
 
     def run(self):
         print(f'[{datetime.now()}]: Бот успешно запущен!')
