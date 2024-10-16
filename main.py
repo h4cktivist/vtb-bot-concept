@@ -9,6 +9,7 @@ import vk_api
 from vk_api.longpoll import VkLongPoll, VkEventType
 
 from db import Database
+from utils import create_advertising
 
 
 class VtbBot:
@@ -45,7 +46,7 @@ class VtbBot:
 
         while True:
             if time.time() - self.last_send_time >= self.send_interval:
-                self.send_mass_message('Это тестовое массовое сообщение!')
+                self.send_mass_message(create_advertising())
                 self.last_send_time = time.time()
             time.sleep(1)
 
